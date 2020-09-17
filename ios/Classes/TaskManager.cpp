@@ -1,18 +1,28 @@
+#include <stdio.h>
+#include <stdint.h>
 #include <thread>
 #include <chrono>
-#include <iostream>
+// #include "dart_api.h"
+// #include "dart_native_api.h"
+#include "include/dart_api.h"
+#include "include/dart_native_api.h"
 
 using namespace std;
 
-extern "C" __attribute__((visibility("default"))) __attribute__((used))
-void perform_task() {
-    this_thread::sleep_for(chrono::seconds(5));
+extern "C"
+void *performTask(int32_t taskid, int32_t sendPort) {
+   this_thread::sleep_for(chrono::seconds(5));
+   Dart_CObject dart_object;
+   dart_object.type = Dart_CObject_kInt64;
+   dart_object.value.as_int64 = taskid;
+   const bool result = Dart_PostCObject(sendPort, &dart_object);
+   return nullptr;
 }
 
-extern "C" __attribute__((visibility("default"))) __attribute__((used))
-int32_t start_task(int32_t taskID) {
-    cout<<"Hello"<<endl;
-    thread newThread(&perform_task);
-    newThread.detach();
-    return taskID;
+extern "C"
+int32_t native_add(int32_t taskid, int32_t sendPort) {
+   //    this_thread::sleep_for(chrono::seconds(5));
+   thread newThread(&performTask, taskid, sendPort);
+   newThread.detach();
+   return int32_t(0);
 }
