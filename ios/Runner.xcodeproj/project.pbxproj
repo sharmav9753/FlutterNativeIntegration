@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,8 @@
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
 		DD98B3184AC14CB822E0C8DB /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AECA3EA9D7B8FCCB481960E /* Pods_Runner.framework */; };
-		FC99B3B025127F6A003A12F9 /* TaskManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC99B3AF25127F6A003A12F9 /* TaskManager.cpp */; };
+		FC0EA1742514BFC900A6C883 /* CallbackManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC0EA16F2514BFC900A6C883 /* CallbackManager.cpp */; };
+		FC0EA1752514BFC900A6C883 /* NativeCallbacksExamplePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = FC0EA1712514BFC900A6C883 /* NativeCallbacksExamplePlugin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,7 +49,10 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FC99B3AF25127F6A003A12F9 /* TaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskManager.cpp; sourceTree = "<group>"; };
+		FC0EA16C2514BFC900A6C883 /* NativeCallbacksExamplePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeCallbacksExamplePlugin.h; sourceTree = "<group>"; };
+		FC0EA16F2514BFC900A6C883 /* CallbackManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CallbackManager.cpp; sourceTree = "<group>"; };
+		FC0EA1702514BFC900A6C883 /* CallbackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallbackManager.h; sourceTree = "<group>"; };
+		FC0EA1712514BFC900A6C883 /* NativeCallbacksExamplePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeCallbacksExamplePlugin.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +89,7 @@
 		97C146E51CF9000F007C117D = {
 			isa = PBXGroup;
 			children = (
-				FC99B3AE25127F6A003A12F9 /* Classes */,
+				FC0EA16B2514BFC900A6C883 /* Classes */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
 				97C146EF1CF9000F007C117D /* Products */,
@@ -127,12 +131,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		FC99B3AE25127F6A003A12F9 /* Classes */ = {
+		FC0EA16B2514BFC900A6C883 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FC99B3AF25127F6A003A12F9 /* TaskManager.cpp */,
+				FC0EA16C2514BFC900A6C883 /* NativeCallbacksExamplePlugin.h */,
+				FC0EA16E2514BFC900A6C883 /* Shared */,
+				FC0EA1712514BFC900A6C883 /* NativeCallbacksExamplePlugin.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		FC0EA16E2514BFC900A6C883 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FC0EA16F2514BFC900A6C883 /* CallbackManager.cpp */,
+				FC0EA1702514BFC900A6C883 /* CallbackManager.h */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,9 +297,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC0EA1742514BFC900A6C883 /* CallbackManager.cpp in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
-				FC99B3B025127F6A003A12F9 /* TaskManager.cpp in Sources */,
+				FC0EA1752514BFC900A6C883 /* NativeCallbacksExamplePlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
