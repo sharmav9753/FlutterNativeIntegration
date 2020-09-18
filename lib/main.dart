@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:async/async.dart';
 import 'package:TaskManager/nativeCallback.dart';
+import 'package:TaskManager/Constants.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,42 +33,38 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   CancelableOperation<int> startOperation;
-  CancelableOperation<List<String>> methodBOperation;
-  int completedTask;
-  dynamic items = [];
+  int taskCounter = 0;
+  dynamic tasks = [];
 
   @override
   void initState() {
     super.initState();
-    NativeCallbacksExample.doSetup();
+    TaskManager.doSetup();
   }
 
-  refreshData(int i) {
-    for (var item in items) {
-      if (item["id"] == i) {
-        items.remove(item);
+  refreshData(int taskID) {
+    for (var task in tasks) {
+      if (task["id"] == taskID) {
+        tasks.remove(task);
         break;
       }
     }
     setState(() {});
   }
 
-  Future<void> setTask(int taskID) async {
-    startOperation = CancelableOperation.fromFuture(
-        NativeCallbacksExample.startTaskMethod(taskID));
-    startOperation.value.then((_completedTask) {
-      print("task with id $_completedTask completed");
-      refreshData(_completedTask);
+  Future<void> startTask(int taskID) async {
+    startOperation =
+        CancelableOperation.fromFuture(TaskManager.startTask(taskID));
+    startOperation.value.then((_completedTaskID) {
+      refreshData(_completedTaskID);
     });
   }
 
   addTaskAction() {
-    print("addTaskAction called");
-    final int currentTimestamp =
-        DateTime.now().millisecondsSinceEpoch.toUnsigned(16);
-    items.add({"id": currentTimestamp, "status": "pending"});
+    final int taskID = DateTime.now().millisecondsSinceEpoch.toUnsigned(16);
+    tasks.add({"id": taskID, "status": "${TaskStatus.inProgress}"});
     setState(() {});
-    setTask(currentTimestamp);
+    startTask(taskID);
   }
 
   @override
@@ -87,16 +84,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget listViewTile() {
     return ListView.builder(
-        itemCount: items.length,
+        itemCount: tasks.length,
         shrinkWrap: true,
         itemBuilder: (context, index) {
-          dynamic data = items[index];
+          dynamic data = tasks[index];
           return Container(
             decoration: BoxDecoration(
               border: Border(bottom: BorderSide(color: Colors.grey[300])),
             ),
             child: ListTile(
-              title: Text("${data['id']}"),
+              title: Text("Task #${data['id']}"),
               subtitle: Text("${data['status']}"),
             ),
           );
