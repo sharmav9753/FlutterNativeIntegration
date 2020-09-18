@@ -42,14 +42,22 @@ class _MyHomePageState extends State<MyHomePage> {
     NativeCallbacksExample.doSetup();
   }
 
+  refreshData(int i) {
+    for (var item in items) {
+      if (item["id"] == i) {
+        items.remove(item);
+        break;
+      }
+    }
+    setState(() {});
+  }
+
   Future<void> setTask(int taskID) async {
     startOperation = CancelableOperation.fromFuture(
         NativeCallbacksExample.startTaskMethod(taskID));
     startOperation.value.then((_completedTask) {
       print("task with id $_completedTask completed");
-      setState(() {
-        completedTask = _completedTask;
-      });
+      refreshData(_completedTask);
     });
   }
 
@@ -65,17 +73,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          addTaskAction();
-        },
-        child: Icon(Icons.add),
-      ),
-      // body: listViewTile()
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            addTaskAction();
+          },
+          child: Icon(Icons.add),
+        ),
+        body: listViewTile());
   }
 
   Widget listViewTile() {
