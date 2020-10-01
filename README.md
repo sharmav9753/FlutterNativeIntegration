@@ -108,3 +108,7 @@ On iOS
 
 > Flutter
 - [Isolate] isolate: "^2.0.3" - https://pub.flutter-io.cn/packages/isolate/install
+
+## Demo
+
+![Alt Text](https://github.com/sharmav9753/FlutterNativeIntegration/blob/25c57145e45604eae0a6476091944d6d11a8bb17/TaskManagerVideoDemo.gif)
