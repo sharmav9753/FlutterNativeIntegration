@@ -75,7 +75,6 @@ This directory is responsible for keeping all the constants and hardcoded values
 - `nativeConnectivity.dart` is the file which holds the code for interoperability of Flutter and Native (C/C++). 
 - `Dart FFI` - https://api.flutter.dev/flutter/dart-ffi/dart-ffi-library.html, is used or interoperability
 - Project should built using `Flutter dev channel`
-- Code is tested on iOS platform
 
 ## Build Info
 
@@ -90,8 +89,15 @@ This directory is responsible for keeping all the constants and hardcoded values
 > Install flutter dependencies
 
 - Go to the project's root directory on the mac's terminal
+
+If you are not on dev channel:
+- Run `flutter channel dev`
+- Run `flutter upgrade` 
+
+Then
 - Run `flutter pub get`
 
+On iOS
 > CocoaPods is one of our dependency manager. If it is not installed on the machine please visit: https://guides.cocoapods.org/using/getting-started.html
 
 - Go to the "ios" directory in project's root directory on the mac's terminal
